@@ -5,9 +5,9 @@
 :subnav_templates:
   altoros-jenkins: altoros-jenkins_subnav
 :template_variables: 
-:local_repo_dir: "/docs"
+:local_repo_dir: "/Users/saday/workspace/docs-altoros-jenkins"
 :workspace: !ruby/object:Pathname
-  path: "/docs/docs-book/output/master_middleman/source"
+  path: "/Users/saday/workspace/docs-altoros-jenkins/docs-book/output/master_middleman/source"
 :feedback_enabled: 
 :repo_link_enabled: true
 :repo_links:
@@ -18,3 +18,4 @@
 :product_info:
   altoros-jenkins: {}
 :elastic_search: false
+:proof: false
