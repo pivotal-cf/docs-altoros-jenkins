@@ -29,9 +29,9 @@ To use Jenkins Docker Plugin with your Altoros Jenkins for PCF deployment, do th
 
 1. Select the **Docker** and complete these fields:
    * **Name**: You can give any name for your cloud.
-   * **Docker URL**: This is the connection URL to your **Jenkins Docker Cloud** host with configured Docker daemon (e.g. tcp://10.111.111.26:4243).
+   * **Docker URL**: This is the connection URL to your **Jenkins Docker Cloud** host with configured Docker daemon (e.g. `tcp://10.111.111.26:4243`).
    * **Docker Image**: Container to be used as a Jenkins follower build node.
-   * **Labels**: Labels to give these nodes (for limiting your builds).
+   * **Labels**: Labels to give these nodes, for limiting your builds.
    <%= image_tag("images/docker_cloud_conf2.png") %>
 
 1. Configure a job to use **Jenkins Docker Cloud** using the labels from the previous step.
