@@ -3,12 +3,6 @@ title: Altoros Jenkins for PCF
 owner: Partners
 ---
 
-<p class="note warning"><strong> WARNING:</strong>
-This tile requires a Trusty stemcell.
-The end-of-life date for Ubuntu Trusty is April 2019.
-If a security vulnerability is found on this stemcell after April, it will not be fixed.</p>
-
-
 This documentation describes Altoros Jenkins for Pivotal Cloud Foundry (PCF).
 
 [Jenkins](https://jenkins.io/) is a self-contained, open source automation server which can be used to automate
@@ -52,13 +46,19 @@ Altoros Jenkins for PCF includes the following key features:
         </tr>
         <tr>
                 <td>BOSH stemcell version</td>
-                <td>Ubuntu Trusty</td>
+                <td>Ubuntu Xenial</td>
         </tr>
 	<tr>
 		<td>IaaS support</td>
 		<td>AWS, GCP, Azure, OpenStack, and vSphere</td>
 	</tr>
 </table>
+<p class="note warning"><strong> WARNING:</strong>
+Altoros Jenkins for PCF v1.0.4
+and earlier require a Ubuntu Trusty stemcell.
+The end-of-life date for Ubuntu Trusty is April 2019.
+If a security vulnerability is found on this stemcell after April, it will not be fixed.</p>
+
 
 
 ## <a id="reqs"></a>Requirements
