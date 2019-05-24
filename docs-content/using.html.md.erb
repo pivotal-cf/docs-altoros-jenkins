@@ -14,11 +14,13 @@ For information, see [Installing and Configuring Altoros Jenkins for PCF](./inst
 
 To use Altoros Jenkins with your PCF deployment, do the following:
 
-1. Navigate to `https://jenkins.YOUR-SYSTEM-DOMAIN`.
-
+1. Navigate to `https://jenkins.INDEX.YOUR-SYSTEM-DOMAIN`.
+    INDEX of Jenkins master instance can see  **Altoros Jenkins for PCF** tile > **Status**
     A prompt appears requesting permission for Jenkins, see **Altoros Jenkins for PCF** tile > **Credentials** for these credentials.
 
 1. Log in to Jenkins using the Administrator credentials.
+
+<p class="note"><strong>Note:</strong> In Jenkins you have the ability to setup users and their relevant permissions on the Jenkins instance. By default you will not want everyone to be able to define jobs or other administrative tasks in Jenkins. So Jenkins has the ability to have a security configuration in place.</p>
 
 ##<a id='container'></a> Set up Docker Followers for Jenkins
 
