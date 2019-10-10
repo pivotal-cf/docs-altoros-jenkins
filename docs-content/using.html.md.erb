@@ -20,6 +20,8 @@ To use Altoros Jenkins with your Pivotal Platform deployment, do the following:
 
 1. Log in to Jenkins using the Administrator credentials.
 
+<p class="note"><strong>Note:</strong> In case you faced with a blank page after sign in to Jenkins, you need to restart that using https://jenkins.INDEX.YOUR-SYSTEM-DOMAIN/safeRestart.</p>
+
 <p class="note"><strong>Note:</strong> In Jenkins you have the ability to setup users and their relevant permissions on the Jenkins instance. By default you will not want everyone to be able to define jobs or other administrative tasks in Jenkins. So Jenkins has the ability to have a security configuration in place.</p>
 
 ##<a id='container'></a> Set up Docker Followers for Jenkins
@@ -29,12 +31,19 @@ To use Jenkins Docker Plugin with your Altoros Jenkins for Pivotal Platform depl
 1. Docker appears in the **Cloud** section of the Jenkins configuration, select **Docker** from the **Add a new cloud** drop down menu.
    <%= image_tag("images/docker_cloud_conf.png") %>
 
-1. Select the **Docker** and complete these fields:
+1. Select the **Docker Cloud details** and complete these fields:
    * **Name**: You can give any name for your cloud.
-   * **Docker URL**: This is the connection URL to your **Jenkins Docker Cloud** host with configured Docker daemon (e.g. `tcp://10.111.111.26:4243`).
-   * **Docker Image**: Container to be used as a Jenkins follower build node.
+   * **Docker Host URI**: This is the connection URL to your **Jenkins Docker Cloud** host with configured Docker daemon (e.g. `tcp://10.111.111.26:4243`).
+   * **Enabled**: You need to enable this block.
+   <%= image_tag("images/docker_cloud_conf2_new.png") %>
+
+1. Select the **Docker Agent templates** and complete these fields:
    * **Labels**: Labels to give these nodes, for limiting your builds.
-   <%= image_tag("images/docker_cloud_conf2.png") %>
+   * **Enabled**: You need to enable this block.
+   * **Docker Image**: Container to be used as a Jenkins follower build node. See jenkins/docker-jnlp-slave as an example.
+   * **Remote File System Root**: Root directory within your image for the Jenkins user to use. You need to set up path /home/jenkins.
+   <%= image_tag("images/docker_cloud_conf3.png") %>
+
 
 1. Configure a job to use **Jenkins Docker Cloud** using the labels from the previous step.
    <%= image_tag("images/job_conf.png") %>
