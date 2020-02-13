@@ -20,7 +20,7 @@ To use Altoros Jenkins with your Pivotal Platform deployment, do the following:
 
 1. Log in to Jenkins using the Administrator credentials.
 
-<p class="note"><strong>Note:</strong> In case you faced with a blank page after sign in to Jenkins, you need to restart that using https://jenkins.INDEX.YOUR-SYSTEM-DOMAIN/safeRestart.</p>
+<p class="note"><strong>Note:</strong> In case you faced with a blank page after sign in to Jenkins, you need to restart that using https://jenkinsINDEX.YOUR-SYSTEM-DOMAIN/safeRestart.</p>
 
 <p class="note"><strong>Note:</strong> In Jenkins you have the ability to setup users and their relevant permissions on the Jenkins instance. By default you will not want everyone to be able to define jobs or other administrative tasks in Jenkins. So Jenkins has the ability to have a security configuration in place.</p>
 
@@ -40,7 +40,7 @@ To use Jenkins Docker Plugin with your Altoros Jenkins for Pivotal Platform depl
 1. Select the **Docker Agent templates** and complete these fields:
    * **Labels**: Labels to give these nodes, for limiting your builds.
    * **Enabled**: You need to enable this block.
-   * **Docker Image**: Container to be used as a Jenkins follower build node. See jenkins/docker-jnlp-slave as an example.
+   * **Docker Image**: Container to be used as a Jenkins follower build node. See jenkins/jnlp-slave as an example.
    * **Remote File System Root**: Root directory within your image for the Jenkins user to use. You need to set up path /home/jenkins.
    <%= image_tag("images/docker_cloud_conf3.png") %>
 
