@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring Altoros Jenkins for VMware Tanzu
+title: Installing, Upgrading and Configuring Altoros Jenkins for VMware Tanzu
 owner: Partners
 ---
 
@@ -21,3 +21,44 @@ This adds the tile to your staging area.
 1. Click **Save**.
 
 1. Return to the Ops Manager Installation Dashboard and click **Apply Changes** to install Altoros Jenkins for VMware Tanzu tile.
+
+##<a id='upgrade'></a> Upgrade Altoros Jenkins for VMware Tanzu
+
+### Upgrading from version 1.1.4
+A bug was introduced in version 1.1.4 that prevents **jenkins_master** and **jenkins-docker-cloud** instances from stopping correctly, and will result in the following error:
+```
+Task 185 | 03:57:50 | Updating instance jenkins_master: jenkins_master/a558be08-f6a9-4129-a512-db5d2de712d3 (0) (canary) (00:00:00)
+                   L Error: Action Failed get_task: Task 2665f493-14d5-4aed-64aa-3b08c25a0ac3 result: 1 of 1 pre-stop scripts failed. Failed Jobs: docker.
+Task 185 | 03:57:50 | Error: Action Failed get_task: Task 2665f493-14d5-4aed-64aa-3b08c25a0ac3 result: 1 of 1 pre-stop scripts failed. Failed Jobs: docker.
+```
+To prevent this error, it is necessary to manually delete the *pre-stop* script from **jenkins_master** and **jenkins-docker-cloud** instances with the BOSH CLI before proceeding with the upgrade.
+
+To do so, you will need to do have the BOSH CLI installed and targeted to the Director instance of your installation, and perform the following steps:
+
+1. Find the unique name of the **jenkins-xxxx** deployment (your deployment will contain a unique id in place of the xxxx):
+```
+# bosh deployments
+Name                          Release(s)                            Stemcell(s)                                     Team(s)  
+jenkins-xxxx               bosh-dns/1.24.0                       bosh-google-kvm-ubuntu-xenial-go_agent/250.207  -  
+                              bosh-dns-aliases/0.0.3                                                                  
+                              bpm/1.1.6                                                                               
+                              jenkins/1.1.4                                                                           
+                              system-metrics/2.0.11                                               
+```
+1. Remove the *pre-stop* script from the **jenkins_master** instance using the following command, replacing jenkins-xxxx with the deployment name from step 1:
+```
+# bosh -n -d jenkins-xxxx ssh jenkins_master "sudo rm /var/vcap/jobs/docker/bin/pre-stop"
+Task 106. Done
+jenkins_master/...: stderr | Unauthorized use is strictly prohibited. All access and activity
+jenkins_master/...: stderr | is subject to logging and monitoring.
+jenkins_master/...: stderr | Connection to 10.0.4.10 closed.
+```
+1. Remove the *pre-stop* script from the **jenkins-docker-cloud** instance using the following command, replacing jenkins-xxxx with the deployment name from step 1:
+```
+# bosh -n -d jenkins-xxxx ssh jenkins-docker-cloud "sudo rm /var/vcap/jobs/docker/bin/pre-stop"
+Task 109. Done
+jenkins-docker-cloud/...: stderr | Unauthorized use is strictly prohibited. All access and activity
+jenkins-docker-cloud/...: stderr | is subject to logging and monitoring.
+jenkins-docker-cloud/...: stderr | Connection to 10.0.4.11 closed.
+```
+1. Proceed with the upgrade as normal.
